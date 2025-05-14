@@ -2,6 +2,7 @@ package testscript;
 
 import java.io.IOException;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automationCore.Base;
@@ -24,11 +25,16 @@ public class ManageSubCategoryTest  extends Base{
 		
 		String 	sub=Exelutility.readStringData(0, 0, "Subcategory");
 		 ManageSubCategoryPage page=new  ManageSubCategoryPage(driver);
-		 page.clickonSubCategoryMenu();;
+		 page.clickonSubCategoryMenu();
+		 page.clickOnMoreInfoField();
 		 page.clickOnNewButton();
 		 page.clickOnCategoryDropdown();
 		 page.clickOnSubCategoryField();
 		 page.clickonsaveButton();
+		 
+		 
+		    
+			
 	}
 
 }
