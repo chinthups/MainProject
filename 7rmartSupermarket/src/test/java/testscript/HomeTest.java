@@ -10,6 +10,7 @@ import pages.LoginPage;
 import utilities.Exelutility;
 
 public class HomeTest  extends Base{
+	HomePage home;
 	@Test
 	public void verifyusercansuccessfullylogoutafterlogin() throws IOException{
 		
@@ -17,14 +18,11 @@ public class HomeTest  extends Base{
 		String password =Exelutility.readStringData(0, 1, "Loginpage");
 		
 		LoginPage login=new LoginPage(driver);
-		HomePage home=new HomePage(driver);
 		
-		login.enterUsernameOnUserNameField(username);
-		login.enterPasswordOnPasswordField(password);
-		login.clickONLoginButon();
+		login.enterUsernameOnUserNameField(username).enterPasswordOnPasswordField(password).clickONLoginButon();
+		home=login.clickONLoginButon();
 		
-		home.clickOnAdminfield();
-		home.clickOnLogoutbutton();
+		home.clickOnAdminfield().clickOnLogoutbutton();
 		
 		
 	}

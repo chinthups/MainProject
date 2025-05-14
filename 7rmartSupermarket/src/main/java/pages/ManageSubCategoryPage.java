@@ -15,16 +15,22 @@ public WebDriver driver;
 		PageFactory.initElements(driver, this);
 	}
 	@FindBy(xpath = "(//p[contains(text(),'Sub Category')])[1]")private WebElement categorymenu;
+	@FindBy(xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/list-sub-category']//i[@class='fas fa-arrow-circle-right']")private WebElement more;
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-danger']")private WebElement newbutton;
-	@FindBy(xpath = "//label[normalize-space()='Category']")private WebElement cat;
+	@FindBy(id="cat_id")private WebElement cat;
 	@FindBy(xpath = "//label[normalize-space()='Sub Category']")private WebElement sub;
 	@FindBy(xpath = "//button[normalize-space()='Save']")private WebElement savebutton;
+	
 	
 	
 	
 	public void clickonSubCategoryMenu()
 	{
 		categorymenu.click();
+	}
+	public void clickOnMoreInfoField()
+	{
+		more.click();
 	}
 	
 	public void clickOnNewButton()
@@ -46,4 +52,5 @@ public WebDriver driver;
 	{
 		savebutton.click();
 	}
+	
 }

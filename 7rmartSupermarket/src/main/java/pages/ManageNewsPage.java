@@ -14,29 +14,34 @@ public WebDriver driver;
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(xpath = "//p[normalize-space()='Manage News']")private WebElement news;
+	
 	@FindBy(xpath = " //a[@class='btn btn-rounded btn-danger']")private WebElement newbutton;
    @FindBy(xpath ="//textarea[@id='news']")private WebElement newnews;
+   @FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")private WebElement SuccessMessage;
    @FindBy(xpath = " //button[normalize-space()='Save']")private WebElement savebutton;
    
    
    
-   public void clickOnManageNewsField()
-   {
-	   news.click();
-   }
-   
-   public void clickonNewButtonField()
+   public ManageNewsPage clickonNewButtonField()
    {
 	   newbutton.click();
+	   return this;
    }
    
-   public void clickOnNewfield(String news)
+   public ManageNewsPage clickOnNewfield(String news)
    {
 	   newnews.sendKeys(news);
+	   return this;
    }
    
-   public void clickOnSaveButton() {
+   public ManageNewsPage clickOnSaveButton() {
 		  savebutton.click();
+		  return this;
+		  
 	  }
+   
+   public boolean successAlertDisplayed() {
+	   
+		return SuccessMessage.isDisplayed();
+	}
 }
