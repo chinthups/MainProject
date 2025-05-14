@@ -2,15 +2,19 @@ package testscript;
 
 import java.io.IOException;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automationCore.Base;
 import pages.AdminUserPage;
+import pages.HomePage;
 import pages.LoginPage;
 import utilities.Exelutility;
 import utilities.RandomDataUtility;
 
 public class AdminUserTest  extends Base {
+	HomePage home;
+	AdminUserPage admin;
 	
 		
 		@Test
@@ -19,20 +23,17 @@ public class AdminUserTest  extends Base {
 			String username=Exelutility.readStringData(0, 0, "LoginPage");
 			String password=Exelutility.readStringData(0, 1, "LoginPage");
 			LoginPage login=new LoginPage(driver);
-			login.enterUsernameOnUserNameField(username);
-			login.enterPasswordOnPasswordField(password);
-			login.clickONLoginButon();
-			AdminUserPage adminuser=new AdminUserPage(driver);
-			adminuser.clickOnAdminUsersField();
-			adminuser.selectOnManageUsers();
-			adminuser.clickOnNewUserButton();
+			login.enterUsernameOnUserNameField(username).enterPasswordOnPasswordField(password).clickONLoginButon();
+			home=login.clickONLoginButon();
+			admin=home.clickOnAdminUsersField();
+			admin.selectOnManageUsers();
+			admin.clickOnNewUserButton();
 			RandomDataUtility random=new RandomDataUtility();
 			String newuserusername=random.createrandomusername();
 			String newuserpassword=random.createrandompassword();
-			adminuser.enterNewUserNameOnUsernameField(newuserusername);
-			adminuser.enterNewPasswordOnPasswordField(newuserpassword);
-			adminuser.clickUserTypeDropdown();
-		    adminuser.clickOnSaveButton();
+			admin.enterNewUserNameOnUsernameField(newuserusername).enterNewPasswordOnPasswordField(newuserpassword).clickUserTypeDropdown().clickOnSaveButton();
+		    boolean issuccessAlertDisplayed = admin.successAlertDisplayed();
+	 		Assert.assertTrue(issuccessAlertDisplayed, " new Admin User  creation is not successful");
 			
 			
 		}
@@ -45,18 +46,14 @@ public class AdminUserTest  extends Base {
 				String username=Exelutility.readStringData(0, 0, "LoginPage");
 				String password=Exelutility.readStringData(0, 1, "LoginPage");
 				LoginPage login=new LoginPage(driver);
-				login.enterUsernameOnUserNameField(username);
-				login.enterPasswordOnPasswordField(password);
-				login.clickONLoginButon();
-				AdminUserPage adminuser=new AdminUserPage(driver);
-				adminuser.clickOnAdminUsersField();
-				adminuser.selectOnManageUsers();
-				adminuser.clickOnNewUserButton();
-				adminuser.clickOnSearchButton();
+				login.enterUsernameOnUserNameField(username).enterPasswordOnPasswordField(password).clickONLoginButon();
+				home=login.clickONLoginButon();
+				admin=home.clickOnAdminUsersField();
+				admin.selectOnManageUsers();
+				admin.clickOnNewUserButton();
+				admin.clickOnSearchButton();
 				String usernamesearch1=Exelutility.readStringData(0, 0, "Homepage");
-				adminuser.enterUserNameOnSearchAdminUser(usernamesearch1);
-				adminuser.selectUsertypeOnSearchAdminUser();
-				adminuser.clickOnSearchSubmittButton();
+				admin.enterUserNameOnSearchAdminUser(usernamesearch1).selectUsertypeOnSearchAdminUser().clickOnSearchSubmittButton();
 		}
 
 }

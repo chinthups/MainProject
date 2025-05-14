@@ -15,12 +15,30 @@ public class HomePage {
 	}
 	 @FindBy(xpath="//a[@data-toggle='dropdown']")private WebElement admin;
 	 @FindBy(xpath="//a[@class='dropdown-item'][normalize-space()='Logout']")private WebElement logout;
+	 @FindBy(xpath = "//p[normalize-space()='Manage News']")private WebElement news;
+	 @FindBy(xpath="//p[text()='Manage Category']")private WebElement manageCategoryButton;
 	 
 	 
-	 public void clickOnAdminfield() {
+	 public HomePage clickOnAdminfield() {
 		 admin.click();
+		 return this ;
 	 }
-	 public void clickOnLogoutbutton() {
+	 public LoginPage clickOnLogoutbutton() {
 		 logout.click();
+		 return new LoginPage(driver);
 	 }
+	public AdminUserPage clickOnAdminUsersField() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	 public ManageNewsPage clickOnManageNewsField()
+	   {
+		   news.click();
+		   return  new ManageNewsPage(driver);
+	   }
+	 public ManageCategoryPage clickCategory() {
+			manageCategoryButton.click();
+			return new ManageCategoryPage(driver);
+		}
+
 }

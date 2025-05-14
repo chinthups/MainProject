@@ -5,6 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.yaml.snakeyaml.scanner.Constant;
+
+import constants.Constants;
+import utilities.PageUtility;
 
 public class AdminUserPage {
 	
@@ -21,6 +25,7 @@ public WebDriver driver;
 @FindBy(id="password")private WebElement userpassword;
 @FindBy(id="user_type")private WebElement usertype;
 @FindBy(xpath="//button[@name='Create']")private WebElement savebutton;
+@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")private WebElement SuccessMessage;
 @FindBy(xpath="//a[@onclick='click_button(2)']")private WebElement searchbutton;
 @FindBy(id="un")private WebElement usernamesearch;
 @FindBy(id="ut")private WebElement usertypesearch;
@@ -31,43 +36,58 @@ public WebDriver driver;
 
 
 
-  public void clickOnAdminUsersField() {
+  public HomePage clickOnAdminUsersField() {
 	adminuser.click();
+	return new HomePage(driver);
   }
 	
-  public void selectOnManageUsers() {
+  public AdminUserPage selectOnManageUsers() {
 	  manageuser.click();
+	  return this;
   }
-  public void clickOnNewUserButton() {
+  public AdminUserPage clickOnNewUserButton() {
 	  addnewuser.click();
+	  return this;
   }
-  public void enterNewUserNameOnUsernameField(String newuserusername) {
+  public AdminUserPage enterNewUserNameOnUsernameField(String newuserusername) {
 	  newUsername.sendKeys(newuserusername);
+	  return this;
   }
-  public void enterNewPasswordOnPasswordField(String newuserpassword) {
+  public AdminUserPage enterNewPasswordOnPasswordField(String newuserpassword) {
 	  userpassword.sendKeys(newuserpassword);
+	  return this;
   }	
-  public void clickUserTypeDropdown() {
+  public AdminUserPage clickUserTypeDropdown() {
 	  
-	  Select select= new Select(usertype);
-	  select.selectByVisibleText("Admin");
-	 // usertype.click();
+	  PageUtility page = new PageUtility();
+		page.selectDropdownWithIndex(usertype,  Constants.DROPDOWNONIDEX2);
+		return this;
   }
-  public void clickOnSaveButton() {
+  public AdminUserPage clickOnSaveButton() {
 	  savebutton.click();
+	  return this;
   }
-  public void clickOnSearchButton() {
+  public boolean successAlertDisplayed() {
+	   
+		return SuccessMessage.isDisplayed();
+	}
+  public AdminUserPage clickOnSearchButton() {
 	  searchbutton.click();
+	  return this;
   }
-  public void enterUserNameOnSearchAdminUser(String usernamesearch1) {
+  public AdminUserPage enterUserNameOnSearchAdminUser(String usernamesearch1) {
 	  usernamesearch.sendKeys(usernamesearch1);
+	  return this;
   }
-  public void selectUsertypeOnSearchAdminUser() {
-	  Select select= new Select(usertypesearch);
-	  select.selectByVisibleText("Admin");
+  public AdminUserPage selectUsertypeOnSearchAdminUser() {
+	  PageUtility page = new PageUtility();
+		page.selectDropdownWithIndex(usertypesearch, Constants.DROPDOWNONIDEX2);
+		searchsubmittbotton.click();
+		return this;
   }
-  public void clickOnSearchSubmittButton() {
+  public AdminUserPage clickOnSearchSubmittButton() {
 	  searchsubmittbotton.click();
+	  return this;
   }
   
 }

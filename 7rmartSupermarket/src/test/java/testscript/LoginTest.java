@@ -21,37 +21,31 @@ public class LoginTest extends Base {
 	String 	username=Exelutility.readStringData(0, 0, "Loginpage");
 	String password =Exelutility.readStringData(0, 1, "Loginpage");
 	LoginPage login=new LoginPage(driver);
-	login.enterUsernameOnUserNameField(username);
-	login.enterPasswordOnPasswordField(password);
-	login.clickONLoginButon();
+	login.enterUsernameOnUserNameField(username).enterPasswordOnPasswordField(password).clickONLoginButon();
 	boolean isdashboarddisplayed=login.dashboardDisplayed();
 	Assert.assertTrue(isdashboarddisplayed,Messages.VALIDCRENDENTIALS);
 		
 	}
-	@Test(priority = 2,description = "Verify Whether the user is unable  to login with invalid username")
+	@Test(priority = 2,description = "Verify Whether the user is unable  to login with invalid username",groups= {"smoke"})
 	public void verifyuserloginwithinvalidusername() throws IOException
 	{
 		String 	username=Exelutility.readStringData(1, 0, "Loginpage");
 		String password =Exelutility.readStringData(1, 1, "Loginpage");
 		LoginPage login=new LoginPage(driver);
-		login.enterUsernameOnUserNameField(username);
-		login.enterPasswordOnPasswordField(password);
-		login.clickONLoginButon();
+		login.enterUsernameOnUserNameField(username).enterPasswordOnPasswordField(password).clickONLoginButon();
 		String actual=login.getpagetitle();
 		String expected="7rmart supermarket";
 		Assert.assertEquals(actual, expected,"User was able to Login with Invalid Username");
 			
 			
 	}
-	@Test(priority = 3,description = "Verify Whether the user is unable  to login with invalid password")
+	@Test(priority = 3,description = "Verify Whether the user is unable  to login with invalid password",groups= {"smoke"})
 	public void verifyuserloginwithinvalidpassword() throws IOException
 	{
 		String 	username=Exelutility.readStringData(2, 0, "Loginpage");
 		String password =Exelutility.readStringData(2, 1, "Loginpage");
 		LoginPage login=new LoginPage(driver);
-		login.enterUsernameOnUserNameField(username);
-		login.enterPasswordOnPasswordField(password);
-		login.clickONLoginButon();
+		login.enterUsernameOnUserNameField(username).enterPasswordOnPasswordField(password).clickONLoginButon();
 			
 	}
 	@Test(priority = 4,description = "Verify Whether the user is unable  to login with invalid credentials",dataProvider ="loginProvider" )
@@ -60,9 +54,7 @@ public class LoginTest extends Base {
 		//String 	username=Exelutility.readStringData(3, 0, "Loginpage");
 		//String password =Exelutility.readStringData(3, 1, "Loginpage");
 		LoginPage login=new LoginPage(driver);
-		login.enterUsernameOnUserNameField(username);
-		login.enterPasswordOnPasswordField(password);
-		login.clickONLoginButon();
+		login.enterUsernameOnUserNameField(username).enterPasswordOnPasswordField(password).clickONLoginButon();
 	}
 	@DataProvider(name="loginProvider")
 	public Object[][] getDataFromDataProvider() throws IOException

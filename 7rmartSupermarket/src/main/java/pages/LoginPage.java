@@ -22,17 +22,20 @@ public class LoginPage {
 
 
 
-	public void enterUsernameOnUserNameField(String username) {
+	public LoginPage enterUsernameOnUserNameField(String username) {
 		usernamefield.sendKeys(username);
+		return this;
 		
 	}
 
-	public void enterPasswordOnPasswordField(String password) {
+	public LoginPage enterPasswordOnPasswordField(String password) {
 		passwordfield.sendKeys(password);
+		return this;
 	}
 
-	public void clickONLoginButon() {
+	public HomePage clickONLoginButon() {
 		loginButton.click();
+		return new HomePage(driver);
 	}
     public boolean dashboardDisplayed()
     {
