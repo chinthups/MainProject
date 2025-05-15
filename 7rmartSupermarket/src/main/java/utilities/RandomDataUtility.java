@@ -25,5 +25,9 @@ public class RandomDataUtility {
 	{
 		return faker.address().fullAddress();
 	}
+	 public String createRandomProductCategory() {
+			return faker.commerce().department();
+	    	
+	    }
 
 }

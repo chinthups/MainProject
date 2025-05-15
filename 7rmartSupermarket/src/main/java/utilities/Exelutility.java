@@ -8,6 +8,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import constants.Constants;
+
 
 public class Exelutility {
 	
@@ -19,7 +21,7 @@ public class Exelutility {
 
 	public static String readStringData(int i,int j,String sheet) throws IOException {
 
-	f= new FileInputStream("C:\\Users\\SaranyaSPillai\\eclipse-workspace\\7rmartSupermarket\\src\\test\\resources\\Mainproject.xlsx");
+	f= new FileInputStream(Constants.TESTDATAFILE);
 
 	w= new XSSFWorkbook(f);
 
