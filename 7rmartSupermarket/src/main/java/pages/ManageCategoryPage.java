@@ -28,6 +28,7 @@ public class ManageCategoryPage {
 	@FindBy(xpath="//div[@class='alert alert-success alert-dismissible']")private WebElement alertTrue;
 	
 	
+	
 	public ManageCategoryPage createNewButon() {
 		createNewButton.click();
 		return this;

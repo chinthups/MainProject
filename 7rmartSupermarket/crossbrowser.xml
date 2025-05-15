@@ -16,7 +16,7 @@
   <test thread-count="5" name="FirefoxTest">
    <parameter name="browser" value="firefox"></parameter>
     <classes>
-      <class name="testscript.ManageNewsTest"/>
+      <class name="testscript.ManageCategoryTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

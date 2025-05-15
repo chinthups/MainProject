@@ -11,6 +11,7 @@ import automationCore.Base;
 import constants.Messages;
 import pages.LoginPage;
 import utilities.Exelutility;
+import utilities.RandomDataUtility;
 
 
 
@@ -35,7 +36,7 @@ public class LoginTest extends Base {
 		login.enterUsernameOnUserNameField(username).enterPasswordOnPasswordField(password).clickONLoginButon();
 		String actual=login.getpagetitle();
 		String expected="7rmart supermarket";
-		Assert.assertEquals(actual, expected,"User was able to Login with Invalid Username");
+		Assert.assertEquals(actual, expected,Messages.INVALIDUSERNAMEERROR);
 			
 			
 	}
@@ -46,15 +47,21 @@ public class LoginTest extends Base {
 		String password =Exelutility.readStringData(2, 1, "Loginpage");
 		LoginPage login=new LoginPage(driver);
 		login.enterUsernameOnUserNameField(username).enterPasswordOnPasswordField(password).clickONLoginButon();
+		String actual = login.getpagetitle();
+		String expected = "7rmart supermarket";
+		Assert.assertEquals(actual, expected, Messages.INVALIDPASSWORDERROR);
 			
 	}
 	@Test(priority = 4,description = "Verify Whether the user is unable  to login with invalid credentials",dataProvider ="loginProvider" )
-	public void verifyuserloginwithinvalidpasswordandusername(String username,String password ) throws IOException
+	public void verifyuserloginwithinvalidpasswordandusername( ) throws IOException
 	{
-		//String 	username=Exelutility.readStringData(3, 0, "Loginpage");
-		//String password =Exelutility.readStringData(3, 1, "Loginpage");
+		RandomDataUtility random = new RandomDataUtility();
+		String username = random. createrandomusername();
+		String password = random.createrandompassword();
 		LoginPage login=new LoginPage(driver);
 		login.enterUsernameOnUserNameField(username).enterPasswordOnPasswordField(password).clickONLoginButon();
+		boolean isalertdisplayed = login.invalidUserAlert();
+		Assert.assertTrue(isalertdisplayed, Messages.INVALIDCREDENTIALERROR );
 	}
 	@DataProvider(name="loginProvider")
 	public Object[][] getDataFromDataProvider() throws IOException

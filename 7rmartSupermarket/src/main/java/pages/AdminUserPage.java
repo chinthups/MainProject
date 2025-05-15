@@ -30,6 +30,8 @@ public WebDriver driver;
 @FindBy(id="un")private WebElement usernamesearch;
 @FindBy(id="ut")private WebElement usertypesearch;
 @FindBy(xpath="//button[@name='Search']")private WebElement searchsubmittbotton;
+@FindBy(xpath = "//h4[text()='Admin Users']")
+private WebElement textinTheSearchResultDiv;
 
 
 
@@ -89,5 +91,8 @@ public WebDriver driver;
 	  searchsubmittbotton.click();
 	  return this;
   }
+  public boolean textinresulthWindow() {
+		return textinTheSearchResultDiv.isDisplayed();
+	}
   
 }

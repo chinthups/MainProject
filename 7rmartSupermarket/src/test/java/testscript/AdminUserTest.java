@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automationCore.Base;
+import constants.Messages;
 import pages.AdminUserPage;
 import pages.HomePage;
 import pages.LoginPage;
@@ -33,7 +34,7 @@ public class AdminUserTest  extends Base {
 			String newuserpassword=random.createrandompassword();
 			admin.enterNewUserNameOnUsernameField(newuserusername).enterNewPasswordOnPasswordField(newuserpassword).clickUserTypeDropdown().clickOnSaveButton();
 		    boolean issuccessAlertDisplayed = admin.successAlertDisplayed();
-	 		Assert.assertTrue(issuccessAlertDisplayed, " new Admin User  creation is not successful");
+	 		Assert.assertTrue(issuccessAlertDisplayed, Messages.USERCREATIONERROR);
 			
 			
 		}
@@ -54,6 +55,8 @@ public class AdminUserTest  extends Base {
 				admin.clickOnSearchButton();
 				String usernamesearch1=Exelutility.readStringData(0, 0, "Homepage");
 				admin.enterUserNameOnSearchAdminUser(usernamesearch1).selectUsertypeOnSearchAdminUser().clickOnSearchSubmittButton();
+				boolean isTextdisplayedinresult=admin.textinresulthWindow();
+				Assert.assertTrue(isTextdisplayedinresult, Messages.USERSEARCHFAILERROR);
 		}
 
 }

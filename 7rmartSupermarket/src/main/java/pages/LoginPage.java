@@ -19,6 +19,8 @@ public class LoginPage {
 	@FindBy(xpath = "//button[text()='Sign In']") private WebElement loginButton;
 	@FindBy(xpath="//p[text()='Dashboard']")private WebElement dashboard;
 	@FindBy(xpath="//b[text()='7rmart supermarket']")private WebElement pagetitle;
+	@FindBy(xpath="//div[@class=\"alert alert-danger alert-dismissible\"]") private WebElement alert;
+
 
 
 
@@ -45,4 +47,7 @@ public class LoginPage {
    {
 	 return  pagetitle.getText();
    }
+   public boolean invalidUserAlert() {
+		return alert.isDisplayed();
+	}
 }

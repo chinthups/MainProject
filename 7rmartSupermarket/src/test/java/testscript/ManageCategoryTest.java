@@ -19,8 +19,8 @@ public class ManageCategoryTest  extends Base{
 	ManageCategoryPage category;
 		@Test(description="To verify whether user is able to create new category")
 		public void verifyWhetherUserIsAbleToCreateNEwCategory() throws IOException {
-			String username = Exelutility.readStringData(0, 0, "Login page");
-			String password = Exelutility.readStringData(0, 1, "Login page");
+			String username = Exelutility.readStringData(0, 0, "LoginPage");
+			String password = Exelutility.readStringData(0, 1, "LoginPage");
 			LoginPage login = new LoginPage(driver);
 			login.enterUsernameOnUserNameField(username);
 			login.enterPasswordOnPasswordField(password);
